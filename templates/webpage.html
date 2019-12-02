@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Welcome to Abraca-Data!</h1>
+    <h2>Articles</h2>
+    <form>
+      <fieldset>
+        <legend><b>Insert New Article</b></legend>
+        <p>
+          <label>What is the <b>name</b> of the journal?</label>
+          <input type = "text"
+                 id = "myText1"
+                 value = "text here" />
+        </p>
+        <p>
+          <label>What is the <b>Article ID</b>?</label>
+          <input type = "text"
+                 id = "myText2"
+                 value = "text here" />
+        </p>
+        <p>
+          <label>What is the <b>Journal ID</b>?</label>
+          <input type = "text"
+                 id = "myText3"
+                 value = "text here" />
+        </p>
+        <button type="button">Insert</button>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend><b>Search For Article</b></legend>
+        <p>
+          <label>What is the <b>Article ID</b>?</label>
+          <input type = "text"
+                 id = "myText4"
+                 value = "text here" />
+        </p>
+        <button type="button" onclick="myFunction()">Search</button>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend><b>Update Article</b></legend>
+        <p>
+          <label>What is the <b>Article ID</b>?</label>
+          <input type = "text"
+                 id = "myText5"
+                 value = "text here" />
+        </p>
+        <p>
+          <label>What is the <b>field</b> you'd like to update?</label>
+          <input type = "text"
+                 id = "myText6"
+                 value = "text here" />
+        </p>
+        <p>
+          <label>What is the <b>new value</b>?</label>
+          <input type = "text"
+                 id = "myText7"
+                 value = "text here" />
+        </p>
+        <button type="button">Update</button>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend><b>Delete Article</b></legend>
+        <p>
+          <label>What is the <b>Article ID</b>?</label>
+          <input type = "text"
+                 id = "myText8"
+                 value = "text here" />
+        </p>
+        <button type="button">Delete</button>
+      </fieldset>
+    </form>
+    <p id="demo"></p>
+    <form id = "result_table"></form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+      function myFunction() {
+        var x = document.getElementById("myText4").value;
+        $.post( "/postmethod", {
+                temp : x}).done(function(data) {
+                  var stat = data["status"];
+                  if(stat == "fail") {
+                    alert("Error your article id does not exist")
+                  } else {
+                    alert(stat);
+                    document.getElementById("result_table").innerHTML = data["data"]
+                  }
+        });
+
+      }
+    </script>
+  </body>
+</html>

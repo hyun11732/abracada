@@ -106,19 +106,26 @@
                  id = "myText5"
                  value = "" />
         </p>
-        <p>
-          <label>What is the <b>field</b> you'd like to update?</label>
-          <input type = "text"
-                 id = "myText6"
-                 value = "" />
-        </p>
+        <p>What would you like to <b>update?</b></p>
+        <label class="container">Number of citations
+          <input type="radio" checked="checked" name="radio1">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Publication URL
+          <input type="radio" name="radio1">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Journal Name
+          <input type="radio" name="radio1">
+          <span class="checkmark"></span>
+        </label>
         <p>
           <label>What is the <b>new value</b>?</label>
           <input type = "text"
                  id = "myText7"
                  value = "" />
         </p>
-        <button type="button">Update</button>
+        <button type="button" onclick="update()">Update</button>
       </fieldset>
     </form>
     <form>
@@ -130,7 +137,7 @@
                  id = "myText8"
                  value = "" />
         </p>
-        <button type="button">Delete</button>
+        <button type="button" onclick="delete()">Delete</button>
       </fieldset>
     </form>
     <p id="demo"></p>
@@ -180,6 +187,45 @@
                     alert("ERROR: Could not insert")
                   } else {
                     alert(stat);
+                  }
+        });
+
+      }
+      function delete() {
+        var article_id = document.getElementById("myText8").value;
+
+        $.post( "/delete", {
+                id : article_id }).done(function(data) {
+                  var stat = data["status"];
+                  if(stat == "fail") {
+                    alert("ERROR: Could not delete")
+                  } else {
+                    alert(stat);
+                  }
+        });
+
+      }
+      function update() {
+        var x = document.getElementById("myText5").value;
+        var radios = document.getElementsByName('radio1');
+        var d = document.getElementById("myText7").value;
+        var search_by = 0
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+         if (radios[i].checked)
+         {
+          search_by = i;
+          alert(search_by)
+          break;
+         }
+        }
+        $.post( "/update", {
+                id : x , choice : search_by , value : d}).done(function(data) {
+                  var stat = data["status"];
+                  if(stat == "fail") {
+                    alert("Error your article id does not exist")
+                  } else {
+                    alert("success");
                   }
         });
 

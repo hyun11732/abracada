@@ -13,24 +13,42 @@
       <fieldset>
         <legend><b>Insert New Article</b></legend>
         <p>
-          <label>What is the <b>name</b> of the journal?</label>
+          <label>What is the <b>name</b> of the article?</label>
           <input type = "text"
-                 id = "myText1"
+                 id = "myText11"
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>Article ID</b>?</label>
+          <label>What is the <b>affiliation</b>?</label>
           <input type = "text"
-                 id = "myText2"
+                 id = "myText12"
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>Journal ID</b>?</label>
+          <label>What is the <b>Journal Name</b>?</label>
           <input type = "text"
-                 id = "myText3"
+                 id = "myText13"
                  value = "" />
         </p>
-        <button type="button">Insert</button>
+        <p>
+          <label>What is the <b>publication year</b>?</label>
+          <input type = "text"
+                 id = "myText14"
+                 value = "" />
+        </p>
+        <p>
+          <label>What is the <b>publication url</b>?</label>
+          <input type = "text"
+                 id = "myText15"
+                 value = "" />
+        </p>
+        <p>
+          <label>How many times has this article been <b>cited</b>?</label>
+          <input type = "text"
+                 id = "myText16"
+                 value = "" />
+        </p>
+        <button type="button" onclick="insert()">Insert</button>
       </fieldset>
     </form>
     <form>
@@ -136,6 +154,25 @@
                     //document.getElementById("result_table").innerHTML = data["data"]
                     var newwin = window.open("", "");
                     newwin.document.write(data["data"]);
+                  }
+        });
+
+      }
+      function insert() {
+        var article_name = document.getElementById("myText11").value;
+        var affiliation = document.getElementById("myText12").value;
+        var journal_name = document.getElementById("myText13").value;
+        var publication_year = document.getElementById("myText14").value;
+        var publication_url = document.getElementById("myText15").value;
+        var number_citations = document.getElementById("myText16").value;
+
+        $.post( "/insert", {
+                name : article_name , aff : affiliation , j_name : journal_name , pub_year : publication_year , pub_url : publication_url , num_citations : number_citations}).done(function(data) {
+                  var stat = data["status"];
+                  if(stat == "fail") {
+                    alert("ERROR: Could not insert")
+                  } else {
+                    alert(stat);
                   }
         });
 

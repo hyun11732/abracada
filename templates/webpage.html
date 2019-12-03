@@ -16,19 +16,19 @@
           <label>What is the <b>name</b> of the journal?</label>
           <input type = "text"
                  id = "myText1"
-                 value = "text here" />
+                 value = "" />
         </p>
         <p>
           <label>What is the <b>Article ID</b>?</label>
           <input type = "text"
                  id = "myText2"
-                 value = "text here" />
+                 value = "" />
         </p>
         <p>
           <label>What is the <b>Journal ID</b>?</label>
           <input type = "text"
                  id = "myText3"
-                 value = "text here" />
+                 value = "" />
         </p>
         <button type="button">Insert</button>
       </fieldset>
@@ -36,11 +36,39 @@
     <form>
       <fieldset>
         <legend><b>Search For Article</b></legend>
+        <p>Search by: </p>
+        <label class="container">Article ID
+          <input type="radio" checked="checked" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Author
+          <input type="radio" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">University
+          <input type="radio" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Title
+          <input type="radio" name="radio" value="1">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Year
+          <input type="radio" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Journal
+          <input type="radio" name="radio">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Field
+          <input type="radio" name="radio">
+          <span class="checkmark"></span>
+        </label>
         <p>
-          <label>What is the <b>Article ID</b>?</label>
           <input type = "text"
                  id = "myText4"
-                 value = "text here" />
+                 value = "" />
         </p>
         <button type="button" onclick="myFunction()">Search</button>
       </fieldset>
@@ -52,19 +80,19 @@
           <label>What is the <b>Article ID</b>?</label>
           <input type = "text"
                  id = "myText5"
-                 value = "text here" />
+                 value = "" />
         </p>
         <p>
           <label>What is the <b>field</b> you'd like to update?</label>
           <input type = "text"
                  id = "myText6"
-                 value = "text here" />
+                 value = "" />
         </p>
         <p>
           <label>What is the <b>new value</b>?</label>
           <input type = "text"
                  id = "myText7"
-                 value = "text here" />
+                 value = "" />
         </p>
         <button type="button">Update</button>
       </fieldset>
@@ -76,7 +104,7 @@
           <label>What is the <b>Article ID</b>?</label>
           <input type = "text"
                  id = "myText8"
-                 value = "text here" />
+                 value = "" />
         </p>
         <button type="button">Delete</button>
       </fieldset>
@@ -87,14 +115,27 @@
     <script>
       function myFunction() {
         var x = document.getElementById("myText4").value;
-        $.post( "/postmethod", {
-                temp : x}).done(function(data) {
+        var radios = document.getElementsByName('radio');
+        var search_by = 0
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+         if (radios[i].checked)
+         {
+          search_by = i;
+          alert(search_by)
+          break;
+         }
+        }
+        $.post( "/search", {
+                value : x , by : search_by}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
                     alert("Error your article id does not exist")
                   } else {
-                    alert(stat);
-                    document.getElementById("result_table").innerHTML = data["data"]
+                    alert("success");
+                    //document.getElementById("result_table").innerHTML = data["data"]
+                    var newwin = window.open("", "");
+                    newwin.document.write(data["data"]);
                   }
         });
 

@@ -19,6 +19,7 @@ class DB:
         cur = self.mydb.cursor()
         query = "select * from articles Where id = " + str(article_id)
         result = pd.read_sql(query, self.mydb)
+        print(result)
         return result
 
     def search_article_by_author(self, author_name):
@@ -54,7 +55,7 @@ class DB:
 
     def search_by_field(self, field) :
         cur = self.mydb.cursor()
-        query = "select *  from articles a natural join journal_list j where  j.field = '" +field + "' limit " + self.limit
+        query = "select *  from articles a natural join journal_list j where  j.field like '%" +field + "%' limit " + self.limit
         result = pd.read_sql(query, self.mydb)
         return result
 
@@ -112,8 +113,40 @@ class DB:
         except :
             return False
 
+    def update_article_on_citedby(self, id, num) :
+        cur = self.mydb.cursor()
+        query = "update articles set citedby = citedby +" +  str(num) + " where id = " + str(id)
+        try :
+            cur.execute(query)
+            self.mydb.commit()
+            return True
+        except :
+            return False
+
+    def update_article_on_puburl(self, id, pub_url) :
+        cur = self.mydb.cursor()
+        query = "update articles set pub_url = '" + pub_url + "' where id = " + str(id)
+        try :
+            cur.execute(query)
+            self.mydb.commit()
+            return True
+        except :
+            return False
+
+    def update_article_on_journal(self, id, journal):
+        cur = self.mydb.cursor()
+        query = "update articles set journal = '" + journal + "' where id = " + str(id)
+        try:
+            cur.execute(query)
+            self.mydb.commit()
+            return True
+        except:
+            return False
+
 
 if __name__ == "__main__" :
     db = DB()
     #db.insert_article("a", "d", 10, "title1", 1920, "", "bytime")
     #db.search_article_by_id(10)
+    #db.update_article_on_journal(500011, "pysics")
+    db.search_by_field("Physics")

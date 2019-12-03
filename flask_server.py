@@ -25,6 +25,7 @@ def user() :
 
 @app.route("/search", methods=["POST"])
 def search() :
+    print("DSFadsfdf")
     value = request.form.get('value')
     by = int(request.form.get('by'))
     print(value, by)
@@ -81,9 +82,10 @@ def delete() :
 
 @app.route("/update", methods=["POST"])
 def update() :
-    by = request.form.get('choice')
+    by = int(request.form.get('choice'))
     id = request.form.get('id')
     value = request.form.get('value')
+    print(by, id , value)
     db = DB()
     result = 0
     if by == 0 :

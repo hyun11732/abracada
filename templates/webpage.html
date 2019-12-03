@@ -137,23 +137,37 @@
                  id = "myText8"
                  value = "" />
         </p>
-        <button type="button" onclick="delete()">Delete</button>
+        <button type="button" onclick = "delete2()">Delete</button>
       </fieldset>
     </form>
     <p id="demo"></p>
     <form id = "result_table"></form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+      function delete2() {
+        var article_id = document.getElementById("myText8").value;
+
+        $.post( "/delete", {
+          id : article_id }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not delete")
+          } else {
+            alert(stat);
+          }
+        });
+
+      }
       function myFunction() {
         var x = document.getElementById("myText4").value;
         var radios = document.getElementsByName('radio');
-        var search_by = 0
+        var search_by = 0;
         for (var i = 0, length = radios.length; i < length; i++)
         {
          if (radios[i].checked)
          {
           search_by = i;
-          alert(search_by)
+          alert(search_by);
           break;
          }
         }
@@ -161,7 +175,7 @@
                 value : x , by : search_by}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
-                    alert("Error your article id does not exist")
+                    alert("Error your article id does not exist");
                   } else {
                     alert("success");
                     //document.getElementById("result_table").innerHTML = data["data"]
@@ -191,20 +205,7 @@
         });
 
       }
-      function delete() {
-        var article_id = document.getElementById("myText8").value;
 
-        $.post( "/delete", {
-                id : article_id }).done(function(data) {
-                  var stat = data["status"];
-                  if(stat == "fail") {
-                    alert("ERROR: Could not delete")
-                  } else {
-                    alert(stat);
-                  }
-        });
-
-      }
       function update() {
         var x = document.getElementById("myText5").value;
         var radios = document.getElementsByName('radio1');

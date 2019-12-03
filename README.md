@@ -13,4 +13,8 @@ CS411 project
 
 2. insert: author, affiliation, citedby (int), pub_title, pub_year (int), pub_url, journal
 3. delete by id 
-4. update
+4. update (by id on citeby/pub_url/journal)
+
+- citedby : 1
+- pub_url : 2
+- journal : 3

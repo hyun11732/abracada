@@ -19,33 +19,39 @@
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>affiliation</b>?</label>
+          <label>What is the <b>name</b> of the author?</label>
           <input type = "text"
                  id = "myText12"
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>Journal Name</b>?</label>
+          <label>What is the <b>affiliation</b>?</label>
           <input type = "text"
                  id = "myText13"
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>publication year</b>?</label>
+          <label>What is the <b>Journal Name</b>?</label>
           <input type = "text"
                  id = "myText14"
                  value = "" />
         </p>
         <p>
-          <label>What is the <b>publication url</b>?</label>
+          <label>What is the <b>publication year</b>?</label>
           <input type = "text"
                  id = "myText15"
                  value = "" />
         </p>
         <p>
-          <label>How many times has this article been <b>cited</b>?</label>
+          <label>What is the <b>publication url</b>?</label>
           <input type = "text"
                  id = "myText16"
+                 value = "" />
+        </p>
+        <p>
+          <label>How many times has this article been <b>cited</b>?</label>
+          <input type = "text"
+                 id = "myText17"
                  value = "" />
         </p>
         <button type="button" onclick="insert()">Insert</button>
@@ -160,14 +166,15 @@
       }
       function insert() {
         var article_name = document.getElementById("myText11").value;
-        var affiliation = document.getElementById("myText12").value;
-        var journal_name = document.getElementById("myText13").value;
-        var publication_year = document.getElementById("myText14").value;
-        var publication_url = document.getElementById("myText15").value;
-        var number_citations = document.getElementById("myText16").value;
+        var author_name = document.getElementById("myText12").value;
+        var affiliation = document.getElementById("myText13").value;
+        var journal_name = document.getElementById("myText14").value;
+        var publication_year = document.getElementById("myText15").value;
+        var publication_url = document.getElementById("myText16").value;
+        var number_citations = document.getElementById("myText17").value;
 
         $.post( "/insert", {
-                name : article_name , aff : affiliation , j_name : journal_name , pub_year : publication_year , pub_url : publication_url , num_citations : number_citations}).done(function(data) {
+                name : article_name , author : author_name , aff : affiliation , j_name : journal_name , pub_year : publication_year , pub_url : publication_url , num_citations : number_citations}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
                     alert("ERROR: Could not insert")

@@ -1,15 +1,27 @@
 from flask import Flask, render_template, request, jsonify, make_response, url_for
 from mysqldb import DB
 import pandas as pd
+import pymongo as pm
 app = Flask(__name__)
 
-user_history = dict()
+USER_MODE = False
 
 @app.route('/')
 def index():
     db = DB()
     temp = url_for('static', filename='style.css')
     return render_template('webpage.html', titles = "search engine")
+
+@app.route('/user')
+def user() :
+    global USER_MODE
+    myclient = pm.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["userhistory"]
+    mycol = mydb["cs411"]
+    user = request.form.get('user')
+    temp = mycol.find({"user_id" : user})
+    if temp.count() == 0 :
+        mycol.create_index({"user_id" : 1})
 
 @app.route("/search", methods=["POST"])
 def search() :
@@ -69,16 +81,16 @@ def delete() :
 
 @app.route("/update", methods=["POST"])
 def update() :
-    by = request.form.get('by')
+    by = request.form.get('choice')
     id = request.form.get('id')
     value = request.form.get('value')
     db = DB()
     result = 0
-    if by == 1 :
+    if by == 0 :
         result = db.update_article_on_citedby(id, value)
-    elif by == 2:
+    elif by == 1:
         result = db.update_article_on_puburl(id, value)
-    else :
+    elif by == 2 :
         result = db.update_article_on_journal(id, value)
     if result == False:
         return jsonify({"status": "fail"})

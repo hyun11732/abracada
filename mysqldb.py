@@ -1,5 +1,6 @@
 import mysql.connector as con
 import pandas as pd
+import pymongo as pm
 
 class DB:
     def __init__(self):
@@ -150,3 +151,10 @@ if __name__ == "__main__" :
     #db.search_article_by_id(10)
     #db.update_article_on_journal(500011, "pysics")
     db.search_by_field("Physics")
+    myclient = pm.MongoClient("mongodb://localhost:27017/")
+    mydb = myclient["userhistory"]
+    mycol = mydb["cs411"]
+    mycol.insert({"user_id" : 1})
+    for i in mycol.find():
+        print(i)
+    mycol.create_index({"user_id" : 1})

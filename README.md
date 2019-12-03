@@ -15,6 +15,6 @@ CS411 project
 3. delete by id 
 4. update (by id on citeby/pub_url/journal)
 
-- citedby : 1
-- pub_url : 2
-- journal : 3
+- citedby : 0
+- pub_url : 1
+- journal : 2

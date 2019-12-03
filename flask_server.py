@@ -42,13 +42,14 @@ def search() :
 @app.route("/insert", methods=["POST"])
 def insert() :
     author = request.form.get('author')
-    affiliation = request.form.get('affiliation')
-    citedby = request.form.get('citedby')
-    title = request.form.get('pub_title')
+    affiliation = request.form.get('aff')
+    citedby = request.form.get('num_citations')
+    title = request.form.get('name')
     year = request.form.get('pub_year')
-    journal = request.form.get('journal')
+    journal = request.form.get('j_name')
+    pub_url = request.form.get('pub_url')
     db = DB()
-    result = db.insert_article(author, affiliation, citedby, title, year, journal)
+    result = db.insert_article(author, affiliation, citedby, title, year, pub_url, journal)
     if result == False :
         return jsonify({"status" : "fail"})
     else :

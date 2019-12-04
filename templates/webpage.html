@@ -338,6 +338,7 @@
 
       }
       function journal_list() {
+        alert("hello")
         $.post( "/rank_journal", {
           username : user }).done(function(data) {
           var stat = data["status"];

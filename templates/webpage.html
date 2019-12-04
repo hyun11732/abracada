@@ -12,6 +12,19 @@
     <form>
       <fieldset>
         <legend><b>Login</b></legend>
+        <p>Top Trending Authors</p>
+        <ol onload="author_list()">
+          <li id="rank1"></li>
+          <li id="rank2"></li>
+          <li id="rank3"></li>
+        </ol>
+        <button type="button" onclick="login()">Login</button>
+        <p id="demo1"></p>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend><b>Login</b></legend>
         <p>Log in if you would like personalized recommendations!</p>
         <p>
           <label>What is your <b>username</b>?</label>
@@ -297,6 +310,22 @@
             alert("success");
             var newwin = window.open("", "");
             newwin.document.write(data["data"]);
+          }
+        });
+
+      }
+      function author_list() {
+        $.post( "/login", {
+          username : user }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not create new account")
+          } else {
+            var d = data["data"]
+            document.getElementById("rank1").innerHTML = d[1];
+            document.getElementById("rank1").innerHTML = d[2];
+            document.getElementById("rank1").innerHTML = d[3];
+            alert(stat);
           }
         });
 

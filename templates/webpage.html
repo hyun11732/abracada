@@ -11,11 +11,21 @@
     <h2>Articles</h2>
     <form>
       <fieldset>
-        <legend><b>Top Trending Authors</b></legend>
+        <legend><h2>Top Trending Authors</h2></legend>
         <ol>
           <li id="rank1"></li>
           <li id="rank2"></li>
           <li id="rank3"></li>
+        </ol>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
+        <legend><h2>Top Trending Journals</h2></legend>
+        <ol>
+          <li id="rank4"></li>
+          <li id="rank5"></li>
+          <li id="rank6"></li>
         </ol>
       </fieldset>
     </form>
@@ -312,7 +322,6 @@
 
       }
       function author_list() {
-        alert("hello")
         $.post( "/rank_author", {
           username : user }).done(function(data) {
           var stat = data["status"];
@@ -323,6 +332,22 @@
             document.getElementById("rank1").innerHTML = d[1];
             document.getElementById("rank2").innerHTML = d[2];
             document.getElementById("rank3").innerHTML = d[3];
+            alert(stat);
+          }
+        });
+
+      }
+      function journal_list() {
+        $.post( "/rank_journal", {
+          username : user }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not create new account")
+          } else {
+            var d = data["data"]
+            document.getElementById("rank4").innerHTML = d[1];
+            document.getElementById("rank5").innerHTML = d[2];
+            document.getElementById("rank6").innerHTML = d[3];
             alert(stat);
           }
         });

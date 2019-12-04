@@ -335,6 +335,19 @@
             alert(stat);
           }
         });
+        $.post( "/rank_journal", {
+          username : user }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not create new account")
+          } else {
+            var d = data["data"]
+            document.getElementById("rank4").innerHTML = d[1];
+            document.getElementById("rank5").innerHTML = d[2];
+            document.getElementById("rank6").innerHTML = d[3];
+            alert(stat);
+          }
+        });
 
       }
       function journal_list() {

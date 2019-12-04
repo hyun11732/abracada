@@ -11,15 +11,12 @@
     <h2>Articles</h2>
     <form>
       <fieldset>
-        <legend><b>Login</b></legend>
-        <p>Top Trending Authors</p>
+        <legend><b>Top Trending Authors</b></legend>
         <ol onload="author_list()">
           <li id="rank1"></li>
           <li id="rank2"></li>
           <li id="rank3"></li>
         </ol>
-        <button type="button" onclick="login()">Login</button>
-        <p id="demo1"></p>
       </fieldset>
     </form>
     <form>
@@ -315,7 +312,7 @@
 
       }
       function author_list() {
-        $.post( "/login", {
+        $.post( "/rank_author", {
           username : user }).done(function(data) {
           var stat = data["status"];
           if(stat == "fail") {

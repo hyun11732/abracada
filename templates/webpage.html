@@ -312,6 +312,7 @@
 
       }
       function author_list() {
+        alert("hello")
         $.post( "/rank_author", {
           username : user }).done(function(data) {
           var stat = data["status"];

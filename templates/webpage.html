@@ -159,8 +159,16 @@
     <form>
       <fieldset>
         <legend><b>Personalized Recommendations</b></legend>
-        <p>Log in if you would like personalized recommendations!</p>
-        <button type="button" onclick="personal_recommend()">Login</button>
+        <p>Recommendations based on:</p>
+        <label class="container">Author
+          <input type="radio" checked="checked" name="radio2">
+          <span class="checkmark"></span>
+        </label>
+        <label class="container">Field
+          <input type="radio" name="radio2">
+          <span class="checkmark"></span>
+        </label>
+        <button type="button" onclick="personal_recommend()">Recommend</button>
       </fieldset>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -269,8 +277,19 @@
       }
       function personal_recommend() {
         x = user
+        var radios = document.getElementsByName('radio2');
+        var search_by = 0;
+        for (var i = 0, length = radios.length; i < length; i++)
+        {
+         if (radios[i].checked)
+         {
+          search_by = i;
+          alert(search_by);
+          break;
+         }
+        }
         $.post( "/recom", {
-          username : x }).done(function(data) {
+          username : x , by : search_by}).done(function(data) {
           var stat = data["status"];
           if(stat == "fail") {
             alert("ERROR: Could not create new account")

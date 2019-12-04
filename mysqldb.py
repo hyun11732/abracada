@@ -25,6 +25,10 @@ class DB:
 
     def search_article_by_author(self, author_name):
         cur = self.mydb.cursor()
+        query = "insert into author_history value ('" + author_name + "')"
+        print(query)
+        cur.execute(query)
+        self.mydb.commit()
         query = "select * from articles Where name = '" + author_name + "' limit " + self.limit
         result = pd.read_sql(query, self.mydb)
         print(result)
@@ -50,6 +54,10 @@ class DB:
 
     def search_article_by_journal(self, journal) :
         cur = self.mydb.cursor()
+        query = "insert into journal_history value ('" + journal + "')"
+        print(query)
+        cur.execute(query)
+        self.mydb.commit()
         query = "select * from articles where journal = '" + journal + "' limit " + self.limit
         result = pd.read_sql(query, self.mydb)
         return result
@@ -144,17 +152,32 @@ class DB:
         except:
             return False
 
+    def show_rank_author(self):
+        cur = self.mydb.cursor()
+        query = "select author from author_view order by a_view desc limit 3;"
+        cur.execute(query)
+        author = cur.fetchall()
+        result = list()
+        for i in author :
+            result.append(i[0])
+        return result
+
+    def show_rank_journal(self) :
+        print("DSAFdasf")
+        cur = self.mydb.cursor()
+        query2 = "select journal from journal_view order by j_view desc limit 3"
+        cur.execute(query2)
+        journal = cur.fetchall()
+        result = list()
+        for i in journal :
+            print(i)
+            result.append(i[0])
+        print(result)
+        return result
 
 if __name__ == "__main__" :
     db = DB()
     #db.insert_article("a", "d", 10, "title1", 1920, "", "bytime")
     #db.search_article_by_id(10)
     #db.update_article_on_journal(500011, "pysics")
-    db.search_by_field("Physics")
-    myclient = pm.MongoClient("mongodb://localhost:27017/")
-    mydb = myclient["userhistory"]
-    mycol = mydb["cs411"]
-    mycol.insert({"user_id" : 1})
-    for i in mycol.find():
-        print(i)
-    mycol.create_index({"user_id" : 1})
+    db.show_rank_journal()

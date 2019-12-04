@@ -11,6 +11,20 @@
     <h2>Articles</h2>
     <form>
       <fieldset>
+        <legend><b>Login</b></legend>
+        <p>Log in if you would like personalized recommendations!</p>
+        <p>
+          <label>What is your <b>username</b>?</label>
+          <input type = "text"
+                 id = "myText81"
+                 value = "" />
+        </p>
+        <button type="button" onclick="login()">Insert</button>
+        <p id="demo1"></p>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset>
         <legend><b>Insert New Article</b></legend>
         <p>
           <label>What is the <b>name</b> of the article?</label>
@@ -228,6 +242,20 @@
                   } else {
                     alert("success");
                   }
+        });
+
+      }
+      function login() {
+        var user = document.getElementById("myText81").value;
+        document.getElementById("demo1").innerHTML = "Logged in as "+user;
+        $.post( "/login", {
+          username : user }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not create new account")
+          } else {
+            alert(stat);
+          }
         });
 
       }

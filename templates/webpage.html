@@ -156,8 +156,16 @@
     </form>
     <p id="demo"></p>
     <form id = "result_table"></form>
+    <form>
+      <fieldset>
+        <legend><b>Personalized Recommendations</b></legend>
+        <p>Log in if you would like personalized recommendations!</p>
+        <button type="button" onclick="personal_recommend()">Login</button>
+      </fieldset>
+    </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
+      var user = "";
       function delete2() {
         var article_id = document.getElementById("myText8").value;
 
@@ -246,7 +254,7 @@
 
       }
       function login() {
-        var user = document.getElementById("myText81").value;
+        user = document.getElementById("myText81").value;
         document.getElementById("demo1").innerHTML = "Logged in as "+user;
         $.post( "/login", {
           username : user }).done(function(data) {
@@ -255,6 +263,21 @@
             alert("ERROR: Could not create new account")
           } else {
             alert(stat);
+          }
+        });
+
+      }
+      function personal_recommend() {
+        x = user
+        $.post( "/recom", {
+          username : x }).done(function(data) {
+          var stat = data["status"];
+          if(stat == "fail") {
+            alert("ERROR: Could not create new account")
+          } else {
+            alert("success");
+            var newwin = window.open("", "");
+            newwin.document.write(data["data"]);
           }
         });
 

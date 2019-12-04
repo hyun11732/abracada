@@ -2,195 +2,218 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Website</title>
+    <title>AbracaData</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link href='https://fonts.googleapis.com/css?family=Amethysta' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Caesar+Dressing' rel='stylesheet' type='text/css'>
   </head>
   <body onload="author_list()" onload="journal_list">
-    <h1>Welcome to Abraca-Data!</h1>
-    <h2>Articles</h2>
-    <form>
-      <fieldset>
-        <legend><h2>Top Trending Authors</h2></legend>
-        <ol>
-          <li id="rank1"></li>
-          <li id="rank2"></li>
-          <li id="rank3"></li>
-        </ol>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><h2>Top Trending Journals</h2></legend>
-        <ol>
-          <li id="rank4"></li>
-          <li id="rank5"></li>
-          <li id="rank6"></li>
-        </ol>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><b>Login</b></legend>
-        <p>Log in if you would like personalized recommendations!</p>
-        <p>
-          <label>What is your <b>username</b>?</label>
-          <input type = "text"
-                 id = "myText81"
-                 value = "" />
-        </p>
-        <button type="button" onclick="login()">Login</button>
-        <p id="demo1"></p>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><b>Insert New Article</b></legend>
-        <p>
-          <label>What is the <b>name</b> of the article?</label>
-          <input type = "text"
-                 id = "myText11"
-                 value = "" />
-        </p>
-        <p>
-          <label>What is the <b>name</b> of the author?</label>
-          <input type = "text"
-                 id = "myText12"
-                 value = "" />
-        </p>
-        <p>
-          <label>What is the <b>affiliation</b>?</label>
-          <input type = "text"
-                 id = "myText13"
-                 value = "" />
-        </p>
-        <p>
-          <label>What is the <b>Journal Name</b>?</label>
-          <input type = "text"
-                 id = "myText14"
-                 value = "" />
-        </p>
-        <p>
-          <label>What is the <b>publication year</b>?</label>
-          <input type = "text"
-                 id = "myText15"
-                 value = "" />
-        </p>
-        <p>
-          <label>What is the <b>publication url</b>?</label>
-          <input type = "text"
-                 id = "myText16"
-                 value = "" />
-        </p>
-        <p>
-          <label>How many times has this article been <b>cited</b>?</label>
-          <input type = "text"
-                 id = "myText17"
-                 value = "" />
-        </p>
-        <button type="button" onclick="insert()">Insert</button>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><b>Search For Article</b></legend>
-        <p>Search by: </p>
-        <label class="container">Article ID
-          <input type="radio" checked="checked" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Author
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">University
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Title
-          <input type="radio" name="radio" value="1">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Year
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Journal
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Field
-          <input type="radio" name="radio">
-          <span class="checkmark"></span>
-        </label>
-        <p>
-          <input type = "text"
-                 id = "myText4"
-                 value = "" />
-        </p>
-        <button type="button" onclick="myFunction()">Search</button>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><b>Update Article</b></legend>
-        <p>
-          <label>What is the <b>Article ID</b>?</label>
-          <input type = "text"
-                 id = "myText5"
-                 value = "" />
-        </p>
-        <p>What would you like to <b>update?</b></p>
-        <label class="container">Number of citations
-          <input type="radio" checked="checked" name="radio1">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Publication URL
-          <input type="radio" name="radio1">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Journal Name
-          <input type="radio" name="radio1">
-          <span class="checkmark"></span>
-        </label>
-        <p>
-          <label>What is the <b>new value</b>?</label>
-          <input type = "text"
-                 id = "myText7"
-                 value = "" />
-        </p>
-        <button type="button" onclick="update()">Update</button>
-      </fieldset>
-    </form>
-    <form>
-      <fieldset>
-        <legend><b>Delete Article</b></legend>
-        <p>
-          <label>What is the <b>Article ID</b>?</label>
-          <input type = "text"
-                 id = "myText8"
-                 value = "" />
-        </p>
-        <button type="button" onclick = "delete2()">Delete</button>
-      </fieldset>
-    </form>
+    <h1><span1 class="fire">A</span1><span1 class="burn">b</span1><span1 class="burn">r</span1><span1 class="burn">a</span1><span1 class="burn">c</span1><span1 class="burn">a</span1><span1 class="burn">-</span1><span1 class="burn">D</span1><span1 class="burn">a</span1><span1 class="burn">t</span1><span1 class="fire">a</span1></h1>
+    <h2 style="color:black;">.</h2>
+    <div style="float:left;">
+      <form>
+        <fieldset>
+          <legend><h2>Top Trending Authors</h2></legend>
+          <ol>
+            <li id="rank1"></li>
+            <p></p>
+            <li id="rank2"></li>
+            <p></p>
+            <li id="rank3"></li>
+          </ol>
+        </fieldset>
+      </form>
+    </div>
+    <div style="float:right;">
+      <form>
+        <fieldset>
+          <legend><h2>Top Trending Journals</h2></legend>
+          <ol>
+            <li id="rank4"></li>
+            <p></p>
+            <li id="rank5"></li>
+            <p></p>
+            <li id="rank6"></li>
+          </ol>
+        </fieldset>
+      </form>
+    </div>
+    <p> </p>
+    <p> </p>
+    <div>
+      <form>
+        <fieldset>
+          <p>Log in if you would like personalized recommendations!</p>
+          <p>
+            <label>What is your <b>username</b>?</label>
+            <input type = "text"
+                   id = "myText81"
+                   value = "" />
+          </p>
+          <button class="button" style="vertical-align:middle" onclick="login()"><span>Login </span></button>
+          <p id="demo1"></p>
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <form>
+        <fieldset>
+          <legend><b>Search For Article</b></legend>
+            <p>Search by: </p>
+            <label class="container">Article ID
+              <input type="radio" checked="checked" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Author
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">University
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Title
+              <input type="radio" name="radio" value="1">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Year
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Journal
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <label class="container">Field
+              <input type="radio" name="radio">
+              <span class="checkmark"></span>
+            </label>
+            <p>
+              <input type = "searchtext"
+                     id = "myText4"
+                     value = "" />
+            </p>
+          <button class="button" style="vertical-align:middle" onclick="myFunction()"><span>Search </span></button>
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <form>
+        <fieldset>
+          <legend><b>Insert New Article</b></legend>
+          <p>
+            <p>What is the <b>name</b> of the article?</p>
+            <input type = "searchtext"
+                   id = "myText11"
+                   value = "" />
+          </p>
+          <p>
+            <p>What is the <b>name</b> of the author?</p>
+            <input type = "searchtext"
+                   id = "myText12"
+                   value = "" />
+          </p>
+          <p>
+            <p>What is the <b>affiliation</b>?</p>
+            <input type = "searchtext"
+                   id = "myText13"
+                   value = "" />
+          </p>
+          <p>
+            <p>What is the <b>Journal Name</b>?</p>
+            <input type = "searchtext"
+                   id = "myText14"
+                   value = "" />
+          </p>
+          <p>
+            <p>What is the <b>publication year</b>?</p>
+            <input type = "searchtext"
+                   id = "myText15"
+                   value = "" />
+          </p>
+          <p>
+            <p>What is the <b>publication url</b>?</p>
+            <input type = "searchtext"
+                   id = "myText16"
+                   value = "" />
+          </p>
+          <p>
+            <p>How many times has this article been <b>cited</b>?</p>
+            <input type = "searchtext"
+                   id = "myText17"
+                   value = "" />
+          </p>
+          <button class="button" style="vertical-align:middle" onclick="insert()"><span>Insert </span></button>
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <form>
+        <fieldset>
+          <legend><b>Update Article</b></legend>
+          <p>
+            <p>What is the <b>Article ID</b>?</p>
+            <input type = "searchtext"
+                   id = "myText5"
+                   value = "" />
+          </p>
+          <p>What would you like to <b>update?</b></p>
+          <label class="container">Number of citations
+            <input type="radio" checked="checked" name="radio1">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Publication URL
+            <input type="radio" name="radio1">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Journal Name
+            <input type="radio" name="radio1">
+            <span class="checkmark"></span>
+          </label>
+          <p>
+            <p>What is the <b>new value</b>?</p>
+            <input type = "searchtext"
+                   id = "myText7"
+                   value = "" />
+          </p>
+          <button class="button" style="vertical-align:middle" onclick="update()"><span>Update </span></button>
+        </fieldset>
+      </form>
+    </div>
+    <div>
+      <form>
+        <fieldset>
+          <legend><b>Delete Article</b></legend>
+          <p>
+            <p>What is the <b>Article ID</b>?</p>
+            <input type = "searchtext"
+                   id = "myText8"
+                   value = "" />
+          </p>
+          <button class="button" style="vertical-align:middle" onclick="delete2()"><span>Delete </span></button>
+        </fieldset>
+      </form>
+    </div>
     <p id="demo"></p>
     <form id = "result_table"></form>
-    <form>
-      <fieldset>
-        <legend><b>Personalized Recommendations</b></legend>
-        <p>Recommendations based on:</p>
-        <label class="container">Author
-          <input type="radio" checked="checked" name="radio2">
-          <span class="checkmark"></span>
-        </label>
-        <label class="container">Field
-          <input type="radio" name="radio2">
-          <span class="checkmark"></span>
-        </label>
-        <button type="button" onclick="personal_recommend()">Recommend</button>
-      </fieldset>
-    </form>
+    <div>
+      <form>
+        <fieldset>
+          <legend><b>Personalized Recommendations</b></legend>
+          <p>Recommendations based on:</p>
+          <label class="container">Author
+            <input type="radio" checked="checked" name="radio2">
+            <span class="checkmark"></span>
+          </label>
+          <label class="container">Field
+            <input type="radio" name="radio2">
+            <span class="checkmark"></span>
+          </label>
+          <button class="button" style="vertical-align:middle" onclick="personal_recommend()"><span>Recommend </span></button>
+        </fieldset>
+      </form>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
       var user = "";

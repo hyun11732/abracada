@@ -6,13 +6,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
   </head>
-  <body>
+  <body onload="author_list()">
     <h1>Welcome to Abraca-Data!</h1>
     <h2>Articles</h2>
     <form>
       <fieldset>
         <legend><b>Top Trending Authors</b></legend>
-        <ol onload="author_list()">
+        <ol>
           <li id="rank1"></li>
           <li id="rank2"></li>
           <li id="rank3"></li>

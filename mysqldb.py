@@ -36,13 +36,13 @@ class DB:
 
     def search_article_by_university(self, university) :
         cur = self.mydb.cursor()
-        query = "select * from articles where affiliation = '" + university + "' limit " + self.limit
+        query = "select * from articles where affiliation like '%" + university + "%' limit " + self.limit
         result = pd.read_sql(query, self.mydb)
         return result
 
     def search_article_by_title(self, title) :
         cur = self.mydb.cursor()
-        query = "select * from articles where pub_title = '" + title + "' limit " + self.limit
+        query = "select * from articles where pub_title like '%" + title + "%' limit " + self.limit
         result = pd.read_sql(query, self.mydb)
         return result
 

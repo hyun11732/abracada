@@ -224,7 +224,7 @@
           id : article_id }).done(function(data) {
           var stat = data["status"];
           if(stat == "fail") {
-            alert("ERROR: Could not delete")
+            alert("ERROR: No record found")
           } else {
             alert(stat);
           }
@@ -240,7 +240,6 @@
          if (radios[i].checked)
          {
           search_by = i;
-          alert(search_by);
           break;
          }
         }
@@ -248,9 +247,8 @@
                 value : x , by : search_by}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
-                    alert("Error your article id does not exist");
+                    alert("Error your input is not found");
                   } else {
-                    alert("success");
                     //document.getElementById("result_table").innerHTML = data["data"]
                     var newwin = window.open("", "");
                     newwin.document.write(data["data"]);
@@ -271,7 +269,7 @@
                 name : article_name , author : author_name , aff : affiliation , j_name : journal_name , pub_year : publication_year , pub_url : publication_url , num_citations : number_citations}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
-                    alert("ERROR: Could not insert")
+                    alert("ERROR: Could not insert Wrong format")
                   } else {
                     alert(stat);
                   }
@@ -289,7 +287,6 @@
          if (radios[i].checked)
          {
           search_by = i;
-          alert(search_by)
           break;
          }
         }
@@ -297,7 +294,7 @@
                 id : x , choice : search_by , value : d}).done(function(data) {
                   var stat = data["status"];
                   if(stat == "fail") {
-                    alert("Error your article id does not exist")
+                    alert("Incorrect article id")
                   } else {
                     alert("success");
                   }
@@ -311,9 +308,9 @@
           username : user }).done(function(data) {
           var stat = data["status"];
           if(stat == "fail") {
-            alert("ERROR: Could not create new account")
+            alert("ERROR: Something wrong")
           } else {
-            alert(stat);
+            alert("Welcome!");
           }
         });
 
@@ -327,7 +324,6 @@
          if (radios[i].checked)
          {
           search_by = i;
-          alert(search_by);
           break;
          }
         }
@@ -335,9 +331,8 @@
           username : x , by : search_by}).done(function(data) {
           var stat = data["status"];
           if(stat == "fail") {
-            alert("ERROR: Could not create new account")
+            alert("ERROR: Please login or search something")
           } else {
-            alert("success");
             var newwin = window.open("", "");
             newwin.document.write(data["data"]);
           }
@@ -355,7 +350,6 @@
             document.getElementById("rank1").innerHTML = d[1];
             document.getElementById("rank2").innerHTML = d[2];
             document.getElementById("rank3").innerHTML = d[3];
-            alert(stat);
           }
         });
         $.post( "/rank_journal", {
@@ -368,7 +362,6 @@
             document.getElementById("rank4").innerHTML = d[1];
             document.getElementById("rank5").innerHTML = d[2];
             document.getElementById("rank6").innerHTML = d[3];
-            alert(stat);
           }
         });
 
@@ -385,7 +378,6 @@
             document.getElementById("rank4").innerHTML = d[1];
             document.getElementById("rank5").innerHTML = d[2];
             document.getElementById("rank6").innerHTML = d[3];
-            alert(stat);
           }
         });
 

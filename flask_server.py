@@ -37,7 +37,7 @@ def search() :
         table = db.search_article_by_id(value)
     elif by == 1 :
         table = db.search_article_by_author(value)
-        if USER_MODE :
+        if USER_MODE and not table.empty:
             newvalues = {"$push": {"author": value}}
             mycol.update({"_id": USER_ID}, newvalues)
     elif by == 2:
@@ -50,7 +50,7 @@ def search() :
         table = db.search_article_by_journal(value)
     else :
         table = db.search_by_field(value)
-        if USER_MODE :
+        if USER_MODE and not table.empty :
             newvalues = {"$push": {"field": value}}
             mycol.update({"_id": USER_ID}, newvalues)
     if table.empty == True :
@@ -109,21 +109,23 @@ def recommendation() :
     by = request.form.get("by")
     if USER_MODE :
         temp = mycol.find_one({"_id": USER_ID})
-        print(by)
-        print(temp)
         db = DB()
         table = pd.DataFrame()
         result = list()
         if by == str(0) : #author
             result = temp["author"]
-            name  = max(result, key= result.count)
-            print(name)
-            table =  db.search_article_by_author(name)
+            try :
+                name  = max(result, key= result.count)
+                table =  db.search_article_by_author(name)
+            except :
+                return {'status': 'fail'}
         else :
             result = temp["field"]
-            field  = max(result, key= result.count)
-            table =  db.search_by_field(field)
-        print(table)
+            try :
+                field  = max(result, key= result.count)
+                table =  db.search_by_field(field)
+            except :
+                return {'status': 'fail'}
         if table.empty :
             return {'status' : 'fail'}
         else :

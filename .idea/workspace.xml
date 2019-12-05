@@ -13,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/flask_server.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="145" column="20" lean-forward="true" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+            <state relative-caret-position="323">
+              <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
               <folding>
                 <element signature="e#0#82#0" expanded="true" />
               </folding>
@@ -25,8 +25,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mysqldb.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="82">
-              <caret line="165" column="23" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+            <state relative-caret-position="-1191">
+              <caret line="61" column="46" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="46" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -36,13 +36,18 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>author</find>
+      <find>print</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mysqldb.py" />
         <option value="$PROJECT_DIR$/flask_server.py" />
       </list>
     </option>
@@ -65,6 +70,11 @@
             <path>
               <item name="abracada" type="b2602c69:ProjectViewProjectNode" />
               <item name="abracada" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="abracada" type="b2602c69:ProjectViewProjectNode" />
+              <item name="abracada" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -136,7 +146,6 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.flask_server" />
-        <item itemvalue="Python.mysqldb" />
       </list>
     </recent_temporary>
   </component>
@@ -164,6 +173,7 @@
       <workItem from="1575327605158" duration="1784000" />
       <workItem from="1575335175733" duration="1668000" />
       <workItem from="1575432902411" duration="90000" />
+      <workItem from="1575502307866" duration="257000" />
     </task>
     <servers />
   </component>
@@ -229,8 +239,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/mysqldb.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="165" column="23" selection-start-line="165" selection-start-column="23" selection-end-line="165" selection-end-column="23" />
+        <state relative-caret-position="-1191">
+          <caret line="61" column="46" selection-start-line="61" selection-start-column="45" selection-end-line="61" selection-end-column="46" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -239,8 +249,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/flask_server.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="145" column="20" lean-forward="true" selection-start-line="145" selection-start-column="20" selection-end-line="145" selection-end-column="20" />
+        <state relative-caret-position="323">
+          <caret line="125" column="50" selection-start-line="125" selection-start-column="50" selection-end-line="125" selection-end-column="50" />
           <folding>
             <element signature="e#0#82#0" expanded="true" />
           </folding>
